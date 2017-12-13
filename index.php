@@ -2,8 +2,8 @@
     function images()
     {
         $extensions = array('jpeg', 'jpg', 'png');
-        $dir = 'C:\dir';
-        $src = 'http://src';
+        $dir = 'C:\Apache24\htdocs\test_php_utf8\foundation\gallery';
+        $src = 'http://localhost/test_php_utf8/foundation/gallery';
         $files = scandir($dir);
 
         foreach ($files as $key => $value)
@@ -99,7 +99,20 @@
                 this.init = function () {
                     this.container = $('#' + id);
                     this.container.append('<h2>'+this.h2+'</h2>');
-                    this.container.append('<div id="div-gallery" class="row expanded small-up-2 medium-up-3 large-up-4"></div>');
+                    var smallUp = 4;
+                    var mediumUp = 6;
+                    var largeUp = 8;
+                    var galleryImagesLength = parseInt(galleryImages.length);
+                    if(galleryImagesLength < smallUp) {
+                        smallUp = galleryImagesLength;
+                    }
+                    if(galleryImagesLength < mediumUp) {
+                        mediumUp = galleryImagesLength;
+                    }
+                    if(galleryImagesLength < largeUp) {
+                        largeUp = galleryImagesLength;
+                    }
+                    this.container.append('<div id="div-gallery" class="row expanded small-up-'+smallUp+' medium-up-'+mediumUp+' large-up-'+largeUp+'"></div>');
                     this.galleryImages.forEach(function(element){
                         this.container.find('#div-gallery').append('\
                             <div class="column column-block">\n\
